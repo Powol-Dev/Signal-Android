@@ -140,6 +140,7 @@ class CreateFoldersFragment : ComposeFragment() {
         onNameChange = { viewModel.updateName(it) },
         onToggleShowUnread = { viewModel.toggleShowUnread(it) },
         onToggleShowMuted = { viewModel.toggleShowMutedChats(it) },
+        onToggleDefaultFolder = { viewModel.toggleDefaultFolder(it) },
         onDeleteClicked = { viewModel.showDeleteDialog(true) },
         onDeleteConfirmed = {
           viewModel.deleteFolder(requireContext())
@@ -187,6 +188,7 @@ fun CreateFolderScreen(
   onNameChange: (String) -> Unit = {},
   onToggleShowUnread: (Boolean) -> Unit = {},
   onToggleShowMuted: (Boolean) -> Unit = {},
+  onToggleDefaultFolder: (Boolean) -> Unit = {},
   onDeleteClicked: () -> Unit = {},
   onDeleteConfirmed: () -> Unit = {},
   onDeleteDismissed: () -> Unit = {},
@@ -344,6 +346,7 @@ fun CreateFolderScreen(
         Dividers.Default()
         ShowUnreadSection(state, onToggleShowUnread)
         ShowMutedSection(state, onToggleShowMuted)
+        ShowDefaultSection(state, onToggleDefaultFolder)
 
         if (!isNewFolder) {
           Dividers.Default()
@@ -443,6 +446,27 @@ private fun ShowMutedSection(state: ChatFoldersSettingsState, onToggleShowMuted:
     Switch(
       checked = state.currentFolder.folderRecord.showMutedChats,
       onCheckedChange = onToggleShowMuted
+    )
+  }
+}
+
+@Composable
+private fun ShowDefaultSection(state: ChatFoldersSettingsState, onToggleDefaultFolder: (Boolean) -> Unit) {
+  Row(
+    verticalAlignment = Alignment.CenterVertically,
+    modifier = Modifier
+      .padding(horizontal = 24.dp)
+      .defaultMinSize(minHeight = 56.dp)
+  ) {
+    Column(modifier = Modifier.weight(1f)) {
+      Text(
+        text = "Make this default folder",
+        style = MaterialTheme.typography.bodyLarge
+      )
+    }
+    Switch(
+      checked = state.currentFolder.folderRecord.isDefaultFolder,
+      onCheckedChange = onToggleDefaultFolder
     )
   }
 }

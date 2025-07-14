@@ -85,6 +85,7 @@ object ChatFolderProcessor {
         ChatFolderTable.POSITION to importState.getNextChatFolderPosition(),
         ChatFolderTable.SHOW_UNREAD to chatFolder.showOnlyUnread,
         ChatFolderTable.SHOW_MUTED to chatFolder.showMutedChats,
+        ChatFolderTable.SHOW_MUTED to chatFolder.showMutedChats,
         ChatFolderTable.SHOW_INDIVIDUAL to chatFolder.includeAllIndividualChats,
         ChatFolderTable.SHOW_GROUPS to chatFolder.includeAllGroupChats,
         ChatFolderTable.FOLDER_TYPE to chatFolder.folderType.toLocal().value,

@@ -143,6 +143,16 @@ class ChatFoldersViewModel : ViewModel() {
     }
   }
 
+  fun toggleDefaultFolder(isDefault: Boolean) {
+    val updatedFolder = internalState.value.currentFolder.folderRecord.copy(
+      isDefaultFolder = isDefault
+    )
+
+    internalState.update {
+      it.copy(currentFolder = it.currentFolder.copy(folderRecord = updatedFolder))
+    }
+  }
+
   fun showDeleteDialog(show: Boolean) {
     internalState.update {
       it.copy(showDeleteDialog = show)

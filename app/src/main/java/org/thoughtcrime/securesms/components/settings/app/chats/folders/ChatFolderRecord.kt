@@ -17,6 +17,7 @@ data class ChatFolderRecord(
   val excludedChats: List<Long> = emptyList(),
   val showUnread: Boolean = false,
   val showMutedChats: Boolean = true,
+  val isDefaultFolder: Boolean = false,
   val showIndividualChats: Boolean = false,
   val showGroupChats: Boolean = false,
   val folderType: FolderType = FolderType.CUSTOM,
@@ -55,7 +56,7 @@ data class ChatFolderRecord(
         folderType = ChatFolderRecord.FolderType.ALL,
         showIndividualChats = true,
         showGroupChats = true,
-        showMutedChats = true
+        showMutedChats = true,
       )
     }
   }
